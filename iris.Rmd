@@ -1,0 +1,85 @@
+---
+title: "Assignment 5"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Author: Ray Wu
+
+## Bringing in Rectangular data
+
+First, we load the `gapminder` and `tidyverse` packages: 
+
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+## Factor Management
+
+### Drop Oceania
+
+```{r}
+gapminder %>% 
+  str()
+```
+
+```{r}
+gapminder %>% 
+  filter(continent != 'Oceania') %>% 
+  droplevels() %>% 
+  str()
+```
+
+```{r}
+gapminder_2007 = gapminder %>% 
+  filter(year == 2007)
+```
+
+```{r}
+gapminder_2007 %>% 
+  mutate(continent=fct_reorder(continent,gdpPercap,min))
+```
+
+
+## file i/o
+
+### write_csv()/read_csv()
+```{r}
+write_csv(gapminder_2007, 'gapminder_2007.csv')
+```
+
+confirm that the file exists:
+```{r}
+list.files()
+```
+We see that the file `gapminder_2007.csv` exists so we know that `write_csv` worked as intended
+
+```{r}
+read_data = read_csv('gapminder_2007.csv')
+
+read_data %>% str()
+```
+
+### saveRDS()/readRDS()
+
+```{r}
+gapminder_2007 %>% saveRDS('gapminder_2007.rds')
+```
+
+Check to make sure that the file exists: 
+
+```{r}
+list.files()
+```
+
+Now, read in the file again: 
+
+```{r}
+rds_file = readRDS('gapminder_2007.rds')
+```
+
+As expected, we do not encounter any problems with reading in the `.rds` file
+
