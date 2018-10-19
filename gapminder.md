@@ -522,8 +522,8 @@ we do not have to include the `plot = improved_graph`, because `improved_graph` 
 
 If we want to go back and save an earlier plot, then this is actually necessary.
 
-![Graph of Population Proportions over time](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder-files/pop_prop_time.png)
+![Graph of Population Proportions over time](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/pop_prop_time.png)
 
-[The same graph, in PDF format](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder_files/pop_prop_time.pdf)
+[The same graph, in PDF format](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/pop_prop_time.pdf)
 
 We see that the `pdf` is *vector* graphics, rather than *raster* graphics that `png` files use. Vector graphics have an advantage in that they are able to be rescaled without loss of image quality.
