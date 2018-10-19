@@ -2,7 +2,12 @@
 
 Assignment 5 submission can be found here. 
 
-[Markdown for viewing](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder.md)
+Author: Ray Wu
 
-[.Rmd source](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder.Rmd)
+Contents of this repository: 
 
+- [Markdown for viewing](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder.md)
+
+- [.Rmd source](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder.Rmd)
+
+- [related figures directory](https://github.com/STAT545-UBC-students/hw05-rning-wu/tree/master/gapminder_files)
