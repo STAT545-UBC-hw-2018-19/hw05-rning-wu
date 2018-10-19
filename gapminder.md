@@ -507,17 +507,13 @@ Part 4: Writing Figures to File
 Saving the figure to a file:
 
 ``` r
-dir.create('gapminder-files')
-```
-
-``` r
-ggsave('gapminder-files/pop_prop_time.png', plot = improved_graph)
+ggsave('pop_prop_time.png', plot = improved_graph)
 ```
 
     ## Saving 7 x 5 in image
 
 ``` r
-ggsave('gapminder-files/pop_prop_time.pdf')
+ggsave('pop_prop_time.pdf')
 ```
 
     ## Saving 7 x 5 in image

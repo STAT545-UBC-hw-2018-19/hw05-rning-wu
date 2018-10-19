@@ -272,16 +272,11 @@ Also, this is not checkable on github because it is rendered in `md`.
 Saving the figure to a file: 
 
 ```{r}
-dir.create('gapminder-files')
-```
-
-
-```{r}
-ggsave('gapminder-files/pop_prop_time.png', plot = improved_graph)
+ggsave('pop_prop_time.png', plot = improved_graph)
 ```
 
 ```{r}
-ggsave('gapminder-files/pop_prop_time.pdf')
+ggsave('pop_prop_time.pdf')
 ```
 
 we do not have to include the `plot = improved_graph`, because `improved_graph` is the last plot we generated. 
