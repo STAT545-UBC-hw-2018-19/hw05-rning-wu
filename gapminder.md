@@ -510,4 +510,16 @@ ggsave('pop_prop_time.png', plot = improved_graph)
 
     ## Saving 7 x 5 in image
 
+``` r
+ggsave('pop_prop_time.pdf')
+```
+
+    ## Saving 7 x 5 in image
+
+we do not have to include the `plot = improved_graph`, because `improved_graph` is the last plot we generated.
+
+If we want to go back and save an earlier plot, then this is actually necessary.
+
 ![Graph of Population Proportions over time](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/pop_prop_time.png)
+
+[The same graph, in PDF format](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/pop_prop_time.pdf)
