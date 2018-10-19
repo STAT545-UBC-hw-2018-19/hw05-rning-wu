@@ -2,6 +2,7 @@
 title: "Assignment 5"
 output:
   github_document:
+    toc: true
 always_allow_html: yes
 ---
 
@@ -21,21 +22,23 @@ library(gapminder)
 library(tidyverse)
 ```
 
-## Factor Management
+## Part 1: Factor Management
 
 ### Drop Oceania
 First, let's take a look at the dataset: 
 
 ```{r}
-gapminder
+knitr::kable(head(gapminder))
 ```
+
 So now, we know that we are dropping the 'Oceania' level from the 'continent' factor
 
 Let's take a look what would happen when we drop Oceania:
 
 ```{r}
 gapminder %>% 
-  filter(continent == 'Oceania')
+  filter(continent == 'Oceania') %>% 
+  knitr::kable()
 ```
 
 Since we have 24 rows and 12 years for each country, we should have 24 entries less or 2 countries less after the modification, whatever one would prefer. 
@@ -51,6 +54,8 @@ gapminder %>%
 (gapminder_no_oceania = gapminder %>% 
   filter(continent != 'Oceania'))
 ```
+
+I'm not going to put the tables with a large number of rows into `knitr::kable()` because then all the rows will be rendered. 
 
 Let's check the modified factor: 
 
@@ -75,15 +80,17 @@ Now, we see that Oceania is actually gone for good.
 Creating a smaller version of the dataset to read/write from the disk (dataset filtered down to data from 2002) and to reorder factors
 
 ```{r}
-gapminder_2002 = gapminder %>% 
-  filter(year == 2002)
+(gapminder_2002 = gapminder %>% 
+  filter(year == 2002))
 ```
 
 ```{r}
 (gapminder_asia_2002 = gapminder_2002 %>% 
-  filter(continent == 'Asia'))
+  filter(continent == 'Asia')) %>% 
+  knitr::kable()
 ```
-## Factor reordering
+
+### Factor reordering
 Now we will see what happens before we reorder the factors: 
 
 ```{r}
@@ -91,6 +98,7 @@ gapminder_asia_2002 %>%
   ggplot(aes(pop, country)) + 
   geom_point() + 
   scale_x_log10() + 
+  xlab('log(pop)') + 
   ggtitle('log(Population) of Asian Countries, 2002')
 ```
 
@@ -104,6 +112,7 @@ gapminder_asia_2002 %>%
   ggplot(aes(pop, country)) + 
   geom_point() + 
   scale_x_log10() + 
+  xlab('log(pop)') + 
   ggtitle('log(Population) of Asian Countries, 2002')
 ```
 
@@ -127,7 +136,7 @@ This does not work because we are not changing the factors, which the plot is ba
 
 Using `fct_reorder`, on the other hand, actually relabels the categories according to the ranking of their population. Hence, the plot with `fct_reorder` is different because the first category corresponds to the country with highest population, instead of the first country that comes along alphabetically.  
 
-## file i/o
+## Part 2: File I/O
 We will demonstrate file i/o with the `gapminder_2002` data frame. 
 
 ### write_csv()/read_csv()
@@ -179,7 +188,7 @@ As expected, we do not encounter any problems with reading in the `.rds` file. I
 
 (Note that I filtered from the _original_ data frame, so we still have 142 countries and 5 continents)
 
-## part 3
+## Part 3: Visualization Design
 
 I am going to re-make a plot I handed in for assignment 2: 
 
@@ -191,12 +200,14 @@ ggplot(gapminder, aes(continent)) +
 ```
 
 Let's see how we can improve this: 
-- count (on the y-axis is unclear). It seems that we are recording the number of countries, but it is not apparent from the axis
+
+- count on the y-axis is unclear. It seems that we are recording the number of countries, but it is not apparent from the axis
 - we should give a title
 - entries from different years are all mixed together. It is hard to imagine this being useful.
 - could be more colourful although the current scheme is readable
 
 Instead, I am going to do the following: 
+
 - contrast the total population of the 5 continents
 - express these values as percentages in order to make it easy to see which continents have increased and decreased their proportion of world population
 - give the graph a meaningful title
@@ -230,15 +241,15 @@ Finally, we generate a stacked-area graph, which allows us to accurately visuali
 
 We can see from this graph that Asia has the majority of the world's population, and Americas' hasn't changed must in the last 60 years or so. Africa's population has increased and Europe's has decreased. Oceania has always been rather un-populated. 
 
-### plotly
-```{r}
-```
+### Plotly
 
+Load the library `plotly`: 
 
 ```{r}
 library(plotly)
 ```
 
+Convert the `ggplot` object into a `plotly` object: 
 
 ```{r}
 improved_graph_plotly = improved_graph %>% ggplotly()
@@ -255,7 +266,9 @@ The most distinctive thing about the `plotly` graph is _interactivity_: I can ho
 
 Also, this is not checkable on github because it is rendered in `md`. 
 
-## Part 4: saving figures to file
+## Part 4: Writing Figures to File
+
+Saving the figure to a file: 
 
 ```{r}
 ggsave('pop_prop_time.png', plot = improved_graph)
