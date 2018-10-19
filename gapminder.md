@@ -492,8 +492,10 @@ Let's take a look at the new file:
 
 ``` r
 # improved_graph_plotly
-# commented out; because github doesn't support it. 
+# commented out because github doesn't support it.  
 ```
+
+I commented out the code that displays the `plotly` plot. This is because github does not render it properly (it's a mess of `javascript` and `html` I think). But I did execute the code on my local machine and you can un-comment the code if you want to see it.
 
 The most distinctive thing about the `plotly` graph is *interactivity*: I can hover my mouse over a data point and I can read it off. This seems to be better for people using `Rmd` but not necessarily for publishing graphs in papers because obviously such a feature is not possible on paper or `pdf`.
 
@@ -505,13 +507,17 @@ Part 4: Writing Figures to File
 Saving the figure to a file:
 
 ``` r
-ggsave('pop_prop_time.png', plot = improved_graph)
+dir.create('gapminder-files')
+```
+
+``` r
+ggsave('gapminder-files/pop_prop_time.png', plot = improved_graph)
 ```
 
     ## Saving 7 x 5 in image
 
 ``` r
-ggsave('pop_prop_time.pdf')
+ggsave('gapminder-files/pop_prop_time.pdf')
 ```
 
     ## Saving 7 x 5 in image
@@ -520,6 +526,8 @@ we do not have to include the `plot = improved_graph`, because `improved_graph` 
 
 If we want to go back and save an earlier plot, then this is actually necessary.
 
-![Graph of Population Proportions over time](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/pop_prop_time.png)
+![Graph of Population Proportions over time](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder-files/pop_prop_time.png)
 
-[The same graph, in PDF format](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/pop_prop_time.pdf)
+[The same graph, in PDF format](https://github.com/STAT545-UBC-students/hw05-rning-wu/blob/master/gapminder_files/pop_prop_time.pdf)
+
+We see that the `pdf` is *vector* graphics, rather than *raster* graphics that `png` files use. Vector graphics have an advantage in that they are able to be rescaled without loss of image quality.
