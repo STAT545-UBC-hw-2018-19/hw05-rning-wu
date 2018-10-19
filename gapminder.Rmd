@@ -247,7 +247,8 @@ improved_graph_plotly = improved_graph %>% ggplotly()
 Let's take a look at the new file:
 
 ```{r}
-improved_graph_plotly
+# improved_graph_plotly
+# commented out; because github doesn't support it. 
 ```
 
 The most distinctive thing about the `plotly` graph is _interactivity_: I can hover my mouse over a data point and I can read it off. This seems to be better for people using `Rmd` but not necessarily for publishing graphs in papers because obviously such a feature is not possible on paper or `pdf`. 
